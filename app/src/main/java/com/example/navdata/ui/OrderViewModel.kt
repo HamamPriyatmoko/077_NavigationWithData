@@ -21,7 +21,15 @@ class OrderViewModel : ViewModel() {
             )
         }
     }
-
+    fun setContact(list: MutableList<String>){
+        _stateUI.update {
+                stateSaatIni-> stateSaatIni.copy(
+            nama = list[0],
+            alamat = list[1],
+            tlp = list[2]
+        )
+        }
+    }
     fun setRasa(rasaPilihan : String){
         _stateUI.update { stateSaatIni ->
             stateSaatIni.copy(rasa = rasaPilihan)
