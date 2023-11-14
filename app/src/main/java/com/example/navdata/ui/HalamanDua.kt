@@ -62,7 +62,6 @@ fun HalamanDua(
         ){
             Column(verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
             ) {
-
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {}
@@ -75,7 +74,6 @@ fun HalamanDua(
                 ) {
                     Text(stringResource(R.string.cancel))
                 }
-
             }
         }
     }
