@@ -25,7 +25,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.navdata.R
 import com.example.navdata.data.SumberData.flavors
 import com.example.navdata.ui.FormHalaman
 import com.example.navdata.ui.HalamanDua
@@ -87,7 +86,7 @@ fun EsJumboApp(
             composable(route = PengelolaHalaman.Home.name){
                 HalamanHome (
                     onNextButtonClicked = {
-                        navController.navigate(PengelolaHalaman.Rasa.name)
+                        navController.navigate(PengelolaHalaman.Form.name)
                     }
                 )
             }
