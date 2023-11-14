@@ -27,6 +27,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.navdata.R
 import com.example.navdata.data.SumberData.flavors
+import com.example.navdata.ui.FormHalaman
 import com.example.navdata.ui.HalamanDua
 import com.example.navdata.ui.HalamanHome
 import com.example.navdata.ui.HalamanSatu
@@ -34,6 +35,7 @@ import com.example.navdata.ui.OrderViewModel
 
 enum class PengelolaHalaman {
     Home,
+    Form,
     Rasa,
     Summary
 }
@@ -89,13 +91,22 @@ fun EsJumboApp(
                     }
                 )
             }
+            composable(route = PengelolaHalaman.Form.name){
+                FormHalaman(
+                    onCancelButtonClicked = {navController.navigate(PengelolaHalaman.Home.name)},
+                    onSubmitButtonClicked = {
+                        viewModel.setContact(it)
+                        navController.navigate(PengelolaHalaman.Rasa.name)
+                    }
+                )
+            }
             composable(route = PengelolaHalaman.Rasa.name) {
                 val context = LocalContext.current
                 HalamanSatu(
                     pilihanRasa = flavors.map { id -> context.resources.getString(id) },
                     onSelectionChanged = { viewModel.setRasa(it)},
                     onConfirmButtonClicked = {viewModel.setJumlah(it)},
-                    onNextButtonClicked = { navController.navigate(PengelolaHalaman.Summary.name)
+                    onNextButtonClicked = { navController.navigate(PengelolaHalaman.Form.name)
                     },
                     onCancelButtonClicked = { cancelOrderAndNavigateToHome(
                         viewModel,
@@ -108,7 +119,6 @@ fun EsJumboApp(
                 HalamanDua(
                     orderUIState = uiState,
                     onCancelButtonClicked = { cancelOrderAndNavigateToRasa(navController)},
-
                     )
             }
         }
